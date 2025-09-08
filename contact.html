@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #E8DAD0;
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+
+        /* Custom Animations & Effects */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Fade in from left */
+        .animate-on-scroll[data-animation="fade-left"] {
+            transform: translateX(-50px);
+        }
+        .animate-on-scroll.is-visible[data-animation="fade-left"] {
+            transform: translateX(0);
+        }
+        
+        /* Fade in from right */
+        .animate-on-scroll[data-animation="fade-right"] {
+            transform: translateX(50px);
+        }
+        .animate-on-scroll.is-visible[data-animation="fade-right"] {
+            transform: translateX(0);
+        }
+        
+        /* Zoom in */
+        .animate-on-scroll[data-animation="zoom-in"] {
+            transform: scale(0.8);
+        }
+        .animate-on-scroll.is-visible[data-animation="zoom-in"] {
+            transform: scale(1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .button-gradient {
+            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .button-gradient:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        }
+
+        .icon-bounce {
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* Dropdown animations */
+        .dropdown-menu {
+            opacity: 0;
+            transform: translateY(10px);
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0s 0.3s;
+        }
+
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+            transition-delay: 0s;
+        }
+
+        /* Footer styling */
+        .footer-logo {
+            font-size: 10rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        /* Message box styling */
+        .message-box {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+
+        .message-box.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="selection:bg-indigo-300 selection:text-indigo-900">
+
+    <header class="fixed top-0 left-0 w-full z-50 bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm shadow-md">
+        <nav class="container mx-auto flex justify-between items-center p-6">
+            <a href="#" class="text-3xl font-bold text-indigo-700">Studio.</a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <div class="flex items-center space-x-8 text-gray-600 font-semibold">
+                    <a href="home.html" class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-10l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        <span>Home</span>
+                    </a>
+                    
+                    <div class="relative group">
+                        <button class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300 focus:outline-none">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>Capabilities</span>
+                            <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute z-50 mt-2 w-48 rounded-lg shadow-xl bg-white p-2">
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Consultancy</a>
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Web Development</a>
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Data Analytics</a>
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Artificial Intelligence</a>
+                        </div>
+
+                    </div>
+
+                    <a href="blog.html" class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2zm-5-10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        <span>Blog</span>
+                    </a>
+
+                    <div class="relative group">
+                        <button class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300 focus:outline-none">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+                            <span>Company</span>
+                            <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute z-50 mt-2 w-48 rounded-lg shadow-xl bg-white p-2">
+                            <a href="aboutus.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">About Us</a>
+                            <a href="career.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Careers</a>
+                            <a href="contact.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+                 <a href="signup.html" class="bg-gray-900 text-white py-2 px-6 rounded-full font-bold hover:bg-gray-700 transition-colors duration-300">
+                    Get Started
+                </a>
+            </div>
+
+            <button id="mobile-menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white p-4 space-y-4">
+            <a href="home.html" class="block text-gray-600 font-semibold hover:text-indigo-700">Home</a>
+            <h3 class="font-bold text-gray-800">Capabilities</h3>
+            <div class="pl-4 space-y-2">
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Consultancy</a>
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Web Development</a>
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Data Analytics</a>
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Artificial Intelligence</a>
+            </div>
+             <a href="blog.html" class="block text-gray-600 font-semibold hover:text-indigo-700">Blog</a>
+             <h3 class="font-bold text-gray-800">Company</h3>
+            <div class="pl-4 space-y-2">
+                 <a href="aboutus.html" class="block text-gray-600 hover:text-indigo-700">About Us</a>
+                 <a href="career.html" class="block text-gray-600 hover:text-indigo-700">Careers</a>
+                 <a href="contact.html" class="block text-gray-600 hover:text-indigo-700">Contact Us</a>
+            </div>
+            <a href="signup.html" class="block text-center bg-gray-900 text-white py-3 px-6 rounded-full font-bold hover:bg-gray-700 transition-colors duration-300 mt-4">
+                Get Started
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="pt-32 pb-20 p-4">
+            <div class="container mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight animate-on-scroll">
+                    Get in Touch
+                </h1>
+                <p class="text-xl text-gray-500 max-w-3xl mx-auto mt-4 animate-on-scroll" style="transition-delay: 0.2s;">
+                    We'd love to hear from you. Send us a message and we'll get back to you as soon as possible.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-20 bg-white">
+            <div class="container mx-auto p-4 grid md:grid-cols-2 gap-12 items-start">
+                <div class="space-y-6 animate-on-scroll" data-animation="fade-right">
+                    <h2 class="text-4xl font-bold text-gray-900">Send Us a Message</h2>
+                    <form id="contact-form" class="space-y-6">
+                        <div id="form-message" class="message-box rounded-lg p-4 font-semibold text-center hidden"></div>
+                        <div>
+                            <label for="name" class="block text-gray-700 font-semibold">Full Name</label>
+                            <input type="text" id="name" class="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-colors" placeholder="Jane Doe" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-semibold">Email Address</label>
+                            <input type="email" id="email" class="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-colors" placeholder="jane.doe@example.com" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 font-semibold">Your Message</label>
+                            <textarea id="message" rows="5" class="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-colors" placeholder="What can we help you with?" required></textarea>
+                        </div>
+                        <button type="submit" id="submit-button" class="w-full text-white py-3 px-8 rounded-full font-bold button-gradient">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="space-y-6 animate-on-scroll" data-animation="fade-left">
+                    <h2 class="text-4xl font-bold text-gray-900">Contact Information</h2>
+                    <div class="space-y-6 text-gray-600 text-lg">
+                        <div class="flex items-center space-x-4">
+                            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <p>123 Digital Street, Suite 400<br>Webcity, CA 90210</p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684L10.5 9.248a1 1 0 01-.502 1.059l-1.5 1.06a4.5 4.5 0 004.5 4.5l1.06-1.5a1 1 0 011.059-.502l4.564 1.488a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <p>contact@studio.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="container mx-auto p-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4 animate-on-scroll">Find Our Location</h2>
+                    <p class="text-lg text-gray-500 max-w-2xl mx-auto animate-on-scroll">
+                        Visit us at our office to discuss your project in person.
+                    </p>
+                </div>
+                <div class="w-full max-w-7xl mx-auto rounded-3xl overflow-hidden shadow-2xl h-96">
+                    <!-- Updated iframe with a real Google Maps embed for a generic location -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.816650426217!2d-118.25867378478426!3d34.05322988060851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c62c2f6d0a79%3A0x3f62c8e312f27d53!2sLos%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1628173432123!5m2!1sen!2sin"
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        aria-hidden="false" 
+                        tabindex="0">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-white" id="call-to-action">
+            <div class="container mx-auto p-4 text-center">
+                <div class="animate-on-scroll">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Let's Build Something Great</h2>
+                    <p class="text-lg text-gray-500 max-w-2xl mx-auto mb-8">
+                        Ready to start your next project? Get in touch with us today and let's turn your ideas into reality.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-gray-400 py-12">
+        <div class="container mx-auto p-4 text-center">
+            <div class="mb-4">
+                <a href="index.html" class="text-3xl font-bold text-white">Studio.</a>
+            </div>
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="hover:text-white transition-colors duration-300">Terms</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Privacy</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Careers</a>
+            </div>
+            <p>&copy; 2024 Studio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(element => {
+                observer.observe(element);
+            });
+
+            // Mobile menu toggle
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Contact form message box
+            const contactForm = document.getElementById('contact-form');
+            const formMessage = document.getElementById('form-message');
+            const submitButton = document.getElementById('submit-button');
+
+            const showMessage = (message, isError) => {
+                formMessage.textContent = message;
+                formMessage.classList.remove('hidden', 'bg-red-200', 'text-red-800', 'bg-green-200', 'text-green-800');
+                if (isError) {
+                    formMessage.classList.add('bg-red-200', 'text-red-800');
+                } else {
+                    formMessage.classList.add('bg-green-200', 'text-green-800');
+                }
+                formMessage.classList.add('is-visible');
+            };
+
+            contactForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+
+                // Simulate a form submission delay
+                setTimeout(() => {
+                    showMessage('Your message has been sent successfully!', false);
+                    contactForm.reset();
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Send Message';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

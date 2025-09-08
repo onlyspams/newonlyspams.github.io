@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #E8DAD0;
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+
+        /* Custom Animations & Effects */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Fade in from left */
+        .animate-on-scroll[data-animation="fade-left"] {
+            transform: translateX(-50px);
+        }
+        .animate-on-scroll.is-visible[data-animation="fade-left"] {
+            transform: translateX(0);
+        }
+        
+        /* Fade in from right */
+        .animate-on-scroll[data-animation="fade-right"] {
+            transform: translateX(50px);
+        }
+        .animate-on-scroll.is-visible[data-animation="fade-right"] {
+            transform: translateX(0);
+        }
+        
+        /* Zoom in */
+        .animate-on-scroll[data-animation="zoom-in"] {
+            transform: scale(0.9);
+        }
+        .animate-on-scroll.is-visible[data-animation="zoom-in"] {
+            transform: scale(1);
+        }
+
+        .card-hover {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-gradient {
+            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .button-gradient:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* Dropdown animations */
+        .dropdown-menu {
+            opacity: 0;
+            transform: translateY(10px);
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0s 0.3s;
+        }
+
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+            transition-delay: 0s;
+        }
+
+        /* Footer styling */
+        .footer-logo {
+            font-size: 10rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="selection:bg-indigo-300 selection:text-indigo-900">
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm shadow-md">
+        <nav class="container mx-auto flex justify-between items-center p-6">
+            <a href="#" class="text-3xl font-bold text-indigo-700">Studio.</a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <div class="flex items-center space-x-8 text-gray-600 font-semibold">
+                    <a href="home.html" class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-10l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        <span>Home</span>
+                    </a>
+                    
+                    <div class="relative group">
+                        <button class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300 focus:outline-none">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>Capabilities</span>
+                            <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute z-50 mt-2 w-48 rounded-lg shadow-xl bg-white p-2">
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Consultancy</a>
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Web Development</a>
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Data Analytics</a>
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Artificial Intelligence</a>
+                        </div>
+                    </div>
+
+                    <a href="blog.html" class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2zm-5-10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        <span>Blog</span>
+                    </a>
+
+                    <div class="relative group">
+                        <button class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300 focus:outline-none">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+                            <span>Company</span>
+                            <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute z-50 mt-2 w-48 rounded-lg shadow-xl bg-white p-2">
+                            <a href="aboutus.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">About Us</a>
+                            <a href="career.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Careers</a>
+                            <a href="contact.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+                 <a href="signup.html" class="bg-gray-900 text-white py-2 px-6 rounded-full font-bold hover:bg-gray-700 transition-colors duration-300">
+                    Get Started
+                </a>
+            </div>
+
+            <button id="mobile-menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white p-4 space-y-4">
+            <a href="home.html" class="block text-gray-600 font-semibold hover:text-indigo-700">Home</a>
+            <h3 class="font-bold text-gray-800">Capabilities</h3>
+            <div class="pl-4 space-y-2">
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Consultancy</a>
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Web Development</a>
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Data Analytics</a>
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Artificial Intelligence</a>
+            </div>
+             <a href="blog.html" class="block text-gray-600 font-semibold hover:text-indigo-700">Blog</a>
+             <h3 class="font-bold text-gray-800">Company</h3>
+            <div class="pl-4 space-y-2">
+                 <a href="aboutus.html" class="block text-gray-600 hover:text-indigo-700">About Us</a>
+                 <a href="career.html" class="block text-gray-600 hover:text-indigo-700">Careers</a>
+                 <a href="contact.html" class="block text-gray-600 hover:text-indigo-700">Contact Us</a>
+            </div>
+            <a href="signup.html" class="block text-center bg-gray-900 text-white py-3 px-6 rounded-full font-bold hover:bg-gray-700 transition-colors duration-300 mt-4">
+                Get Started
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Careers Hero Section -->
+        <section class="pt-40 pb-24 p-4 bg-white">
+            <div class="container mx-auto text-center">
+                <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight animate-on-scroll">
+                    Shape the Future With Us
+                </h1>
+                <p class="text-xl text-gray-500 max-w-3xl mx-auto mt-6 animate-on-scroll" style="transition-delay: 0.2s;">
+                    We are a passionate team of innovators and creators dedicated to building amazing things. Explore our open positions and find where you belong.
+                </p>
+            </div>
+        </section>
+
+        <!-- Why Join Us Section -->
+        <section class="py-20">
+            <div class="container mx-auto p-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 animate-on-scroll">Why Join Our Team?</h2>
+                    <p class="text-lg text-gray-500 max-w-3xl mx-auto animate-on-scroll" style="transition-delay: 0.2s;">
+                        We believe in fostering a culture of growth, collaboration, and creativity.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Card 1 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 text-center card-hover animate-on-scroll" data-animation="zoom-in">
+                        <img src="https://placehold.co/600x400/667eea/ffffff?text=Innovation" alt="Innovation" class="rounded-lg mb-6 w-full h-48 object-cover">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Drive Innovation</h3>
+                        <p class="text-gray-500">Work on cutting-edge projects that push the boundaries of technology and design, making a real impact on industries.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 text-center card-hover animate-on-scroll" data-animation="zoom-in" style="transition-delay: 0.2s;">
+                        <img src="https://placehold.co/600x400/764ba2/ffffff?text=Growth" alt="Growth" class="rounded-lg mb-6 w-full h-48 object-cover">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Career Growth</h3>
+                        <p class="text-gray-500">We invest in your professional development with continuous learning opportunities, mentorship, and clear career paths.</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 text-center card-hover animate-on-scroll" data-animation="zoom-in" style="transition-delay: 0.4s;">
+                        <img src="https://placehold.co/600x400/4299e1/ffffff?text=Culture" alt="Culture" class="rounded-lg mb-6 w-full h-48 object-cover">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Vibrant Culture</h3>
+                        <p class="text-gray-500">Join a diverse and inclusive team that values collaboration, respects every voice, and loves to celebrate success together.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How We Work Section -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto p-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 animate-on-scroll">How We Work</h2>
+                    <p class="text-lg text-gray-500 max-w-3xl mx-auto animate-on-scroll" style="transition-delay: 0.2s;">
+                        Our process is built on transparency, agility, and a shared commitment to excellence.
+                    </p>
+                </div>
+                <div class="max-w-4xl mx-auto space-y-12">
+                    <!-- Step 1 -->
+                    <div class="flex items-start space-x-6 animate-on-scroll" data-animation="fade-right">
+                        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl font-bold">01</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Collaborate & Discover</h3>
+                            <p class="text-gray-500">We start every project with deep collaboration, both internally and with our clients. We believe the best ideas emerge when diverse minds work together to explore possibilities and define clear goals.</p>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="flex items-start space-x-6 animate-on-scroll" data-animation="fade-left" style="transition-delay: 0.2s;">
+                        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl font-bold">02</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Build & Iterate</h3>
+                            <p class="text-gray-500">Our teams work in agile sprints, allowing us to build, test, and refine our work in rapid cycles. This iterative approach ensures we stay flexible and deliver high-quality results efficiently.</p>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="flex items-start space-x-6 animate-on-scroll" data-animation="fade-right" style="transition-delay: 0.4s;">
+                        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl font-bold">03</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Launch & Grow</h3>
+                            <p class="text-gray-500">Our job isn't done at launch. We support our creations and use data-driven insights to help them grow and evolve, ensuring long-term success and continuous improvement.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Open Positions Section -->
+        <section class="py-20">
+            <div class="container mx-auto p-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 animate-on-scroll">Current Openings</h2>
+                    <p class="text-lg text-gray-500 max-w-3xl mx-auto animate-on-scroll" style="transition-delay: 0.2s;">
+                        Find the role that's right for you and start your journey with us.
+                    </p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8 divide-y divide-gray-200">
+                    <!-- Job 1 -->
+                    <div class="py-6 flex flex-col md:flex-row justify-between items-center animate-on-scroll" data-animation="fade-up">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Senior Frontend Developer</h3>
+                            <p class="text-gray-500 mt-1">Webcity, CA &bull; Full-time</p>
+                        </div>
+                        <a href="#" class="mt-4 md:mt-0 inline-block text-white py-3 px-6 rounded-full font-bold button-gradient">Apply Now</a>
+                    </div>
+                    <!-- Job 2 -->
+                    <div class="py-6 flex flex-col md:flex-row justify-between items-center animate-on-scroll" data-animation="fade-up">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Lead UI/UX Designer</h3>
+                            <p class="text-gray-500 mt-1">Remote &bull; Full-time</p>
+                        </div>
+                        <a href="#" class="mt-4 md:mt-0 inline-block text-white py-3 px-6 rounded-full font-bold button-gradient">Apply Now</a>
+                    </div>
+                    <!-- Job 3 -->
+                    <div class="py-6 flex flex-col md:flex-row justify-between items-center animate-on-scroll" data-animation="fade-up">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Product Manager - SaaS</h3>
+                            <p class="text-gray-500 mt-1">Webcity, CA &bull; Full-time</p>
+                        </div>
+                        <a href="#" class="mt-4 md:mt-0 inline-block text-white py-3 px-6 rounded-full font-bold button-gradient">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 py-12">
+        <div class="container mx-auto p-4 text-center">
+            <div class="mb-4">
+                <a href="index.html" class="text-3xl font-bold text-white">Studio.</a>
+            </div>
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="hover:text-white transition-colors duration-300">Terms</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Privacy</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Careers</a>
+            </div>
+            <p>&copy; 2024 Studio. All rights reserved.</p>
+            <!-- Demo Image Footer -->
+            <div class="mt-8 flex justify-center">
+                <div class="w-full max-w-7xl flex flex-col items-center">
+                    <h1 class="text-white text-3xl md:text-5xl lg:text-7xl footer-logo mb-4">
+                        <div class="text-white">[]</div><div class="text-white">webstacks</div>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(element => {
+                observer.observe(element);
+            });
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

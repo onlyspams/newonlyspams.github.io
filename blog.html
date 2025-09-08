@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Insights Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #E8DAD0;
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+
+        /* Custom Animations & Effects */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Fade in from left */
+        .animate-on-scroll[data-animation="fade-left"] {
+            transform: translateX(-50px);
+        }
+        .animate-on-scroll.is-visible[data-animation="fade-left"] {
+            transform: translateX(0);
+        }
+        
+        /* Fade in from right */
+        .animate-on-scroll[data-animation="fade-right"] {
+            transform: translateX(50px);
+        }
+        .animate-on-scroll.is-visible[data-animation="fade-right"] {
+            transform: translateX(0);
+        }
+        
+        /* Zoom in */
+        .animate-on-scroll[data-animation="zoom-in"] {
+            transform: scale(0.8);
+        }
+        .animate-on-scroll.is-visible[data-animation="zoom-in"] {
+            transform: scale(1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .button-gradient {
+            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .button-gradient:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        }
+
+        .icon-bounce {
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* Dropdown animations */
+        .dropdown-menu {
+            opacity: 0;
+            transform: translateY(10px);
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0s 0.3s;
+        }
+
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+            transition-delay: 0s;
+        }
+
+        /* Footer styling */
+        .footer-logo {
+            font-size: 10rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="selection:bg-indigo-300 selection:text-indigo-900">
+
+    <!-- Header (from provided code) -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm shadow-md">
+        <nav class="container mx-auto flex justify-between items-center p-6">
+            <a href="#" class="text-3xl font-bold text-indigo-700">Studio.</a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <div class="flex items-center space-x-8 text-gray-600 font-semibold">
+                    <a href="home.html" class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-10l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        <span>Home</span>
+                    </a>
+                    
+                    <div class="relative group">
+                        <button class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300 focus:outline-none">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>Capabilities</span>
+                            <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute z-50 mt-2 w-48 rounded-lg shadow-xl bg-white p-2">
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Consultancy</a>
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Web Development</a>
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Data Analytics</a>
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Artificial Intelligence</a>
+                        </div>
+                    </div>
+                    
+                    <a href="blog.html" class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2zm-5-10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        <span>Blog</span>
+                    </a>
+
+                    <div class="relative group">
+                        <button class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300 focus:outline-none">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+                            <span>Company</span>
+                            <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute z-50 mt-2 w-48 rounded-lg shadow-xl bg-white p-2">
+                            <a href="aboutus.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">About Us</a>
+                            <a href="career.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Careers</a>
+                            <a href="contact.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="bg-gray-900 text-white py-2 px-6 rounded-full font-bold hover:bg-gray-700 transition-colors duration-300">
+                    Get Started
+                </a>
+            </div>
+
+            <button id="mobile-menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white p-4 space-y-4">
+            <a href="home.html" class="block text-gray-600 font-semibold hover:text-indigo-700">Home</a>
+            <h3 class="font-bold text-gray-800">Capabilities</h3>
+            <div class="pl-4 space-y-2">
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Consultancy</a>
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Web Development</a>
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Data Analytics</a>
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Artificial Intelligence</a>
+            </div>
+            <a href="blog.html" class="block text-gray-600 font-semibold hover:text-indigo-700">Blog</a>
+            <h3 class="font-bold text-gray-800">Company</h3>
+            <div class="pl-4 space-y-2">
+                <a href="aboutus.html" class="block text-gray-600 hover:text-indigo-700">About Us</a>
+                <a href="career.html" class="block text-gray-600 hover:text-indigo-700">Careers</a>
+                <a href="contact.html" class="block text-gray-600 hover:text-indigo-700">Contact Us</a>
+            </div>
+            <a href="#" class="block text-center bg-gray-900 text-white py-3 px-6 rounded-full font-bold hover:bg-gray-700 transition-colors duration-300 mt-4">
+                Get Started
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 sm:p-8 pt-32 pb-20">
+        <!-- Main header (from provided code) -->
+        <section class="pt-10 pb-20 p-4 animate-on-scroll">
+            <div class="container mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+                    Tech Insights
+                </h1>
+                <p class="text-xl text-gray-500 max-w-3xl mx-auto mt-4" style="transition-delay: 0.2s;">
+                    Exploring the cutting edge of technology, one byte at a time.
+                </p>
+            </div>
+        </section>
+
+        <!-- Blog Posts Grid (from previous response with new classes) -->
+        <main class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <!-- AI Blog Post -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover transition-shadow duration-300 animate-on-scroll" data-animation="fade-left">
+                <img class="w-full h-48 object-cover object-center" src="https://placehold.co/600x400/e2e8f0/1e293b?text=AI" alt="AI illustration">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">The Rise of Generative AI</h2>
+                    <p class="text-slate-500 mb-4 text-sm">Dive into the fascinating world of generative AI. From creating stunning art to writing compelling code, these models are changing how we interact with technology. Explore the ethics, potential, and real-world applications of this revolutionary field.</p>
+                    <a href="https://www.tumblr.com/tagged/ai" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold py-2 px-4 rounded-full text-sm hover:bg-indigo-700 transition-colors duration-200">
+                        Read More
+                    </a>
+                </div>
+            </div>
+
+            <!-- Data Science Blog Post -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover transition-shadow duration-300 animate-on-scroll" data-animation="zoom-in">
+                <img class="w-full h-48 object-cover object-center" src="https://placehold.co/600x400/e2e8f0/1e293b?text=Data+Science" alt="Data Science illustration">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Unlocking Insights: A Data Scientist's Journey</h2>
+                    <p class="text-slate-500 mb-4 text-sm">Data is the new oil, and data scientists are the prospectors. Learn how raw data is transformed into actionable intelligence that drives business decisions. We'll cover everything from cleaning datasets to building predictive models.</p>
+                    <a href="https://www.tumblr.com/tagged/data-science" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold py-2 px-4 rounded-full text-sm hover:bg-indigo-700 transition-colors duration-200">
+                        Read More
+                    </a>
+                </div>
+            </div>
+
+            <!-- Machine Learning Blog Post -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover transition-shadow duration-300 animate-on-scroll" data-animation="fade-right">
+                <img class="w-full h-48 object-cover object-center" src="https://placehold.co/600x400/e2e8f0/1e293b?text=ML" alt="Machine Learning illustration">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">From Algorithms to Action: The Power of ML</h2>
+                    <p class="text-slate-500 mb-4 text-sm">Machine Learning is everywhere, from your Netflix recommendations to self-driving cars. This post demystifies the core concepts, from supervised learning to neural networks, and shows how simple algorithms can solve complex problems.</p>
+                    <a href="https://www.tumblr.com/tagged/machine-learning" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold py-2 px-4 rounded-full text-sm hover:bg-indigo-700 transition-colors duration-200">
+                        Read More
+                    </a>
+                </div>
+            </div>
+
+            <!-- Coding Blog Post -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover transition-shadow duration-300 animate-on-scroll" data-animation="fade-left">
+                <img class="w-full h-48 object-cover object-center" src="https://placehold.co/600x400/e2e8f0/1e293b?text=Coding" alt="Coding illustration">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Beyond Hello World: Mastering the Art of Code</h2>
+                    <p class="text-slate-500 mb-4 text-sm">Coding is more than just syntax; it's a way of thinking. Discover tips and tricks for writing clean, efficient, and maintainable code. Whether you're a beginner or a seasoned developer, there's always something new to learn.</p>
+                    <a href="https://www.tumblr.com/tagged/coding" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold py-2 px-4 rounded-full text-sm hover:bg-indigo-700 transition-colors duration-200">
+                        Read More
+                    </a>
+                </div>
+            </div>
+
+            <!-- Cybersecurity Blog Post -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover transition-shadow duration-300 animate-on-scroll" data-animation="zoom-in">
+                <img class="w-full h-48 object-cover object-center" src="https://placehold.co/600x400/e2e8f0/1e293b?text=Cybersecurity" alt="Cybersecurity illustration">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">The Digital Fortress: Defending Against Cyber Threats</h2>
+                    <p class="text-slate-500 mb-4 text-sm">In our connected world, cybersecurity is paramount. Learn about the latest hacking techniques, common vulnerabilities, and essential best practices to protect your data and stay safe online. Your digital footprint is more vulnerable than you think!</p>
+                    <a href="https://www.tumblr.com/tagged/cyber-security" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold py-2 px-4 rounded-full text-sm hover:bg-indigo-700 transition-colors duration-200">
+                        Read More
+                    </a>
+                </div>
+            </div>
+
+            <!-- Cloud Computing Blog Post -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover transition-shadow duration-300 animate-on-scroll" data-animation="fade-right">
+                <img class="w-full h-48 object-cover object-center" src="https://placehold.co/600x400/e2e8f0/1e293b?text=Cloud" alt="Cloud illustration">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Floating in the Cloud: A Guide to Cloud Computing</h2>
+                    <p class="text-slate-500 mb-4 text-sm">Cloud computing is the backbone of modern tech. From SaaS to IaaS, we'll break down the concepts that power everything from streaming services to enterprise applications. Discover how the cloud enables flexibility and scalability for businesses.</p>
+                    <a href="https://www.tumblr.com/tagged/cloud-computing" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold py-2 px-4 rounded-full text-sm hover:bg-indigo-700 transition-colors duration-200">
+                        Read More
+                    </a>
+                </div>
+            </div>
+            
+            <!-- IoT Blog Post -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover transition-shadow duration-300 animate-on-scroll" data-animation="fade-left">
+                <img class="w-full h-48 object-cover object-center" src="https://placehold.co/600x400/e2e8f0/1e293b?text=IoT" alt="IoT illustration">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">The Internet of Things: A Connected World</h2>
+                    <p class="text-slate-500 mb-4 text-sm">Smart homes, wearable tech, and connected cities—the IoT is everywhere. Learn how devices communicate with each other and the internet, creating a web of data that improves our lives. Explore the future of connected technology.</p>
+                    <a href="https://www.tumblr.com/tagged/iot" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold py-2 px-4 rounded-full text-sm hover:bg-indigo-700 transition-colors duration-200">
+                        Read More
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Blockchain Blog Post -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover transition-shadow duration-300 animate-on-scroll" data-animation="zoom-in">
+                <img class="w-full h-48 object-cover object-center" src="https://placehold.co/600x400/e2e8f0/1e293b?text=Blockchain" alt="Blockchain illustration">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Blockchain: More Than Just Crypto</h2>
+                    <p class="text-slate-500 mb-4 text-sm">Beyond Bitcoin, blockchain technology offers a secure and decentralized way to store and manage data. Understand how this distributed ledger technology is revolutionizing industries from finance to supply chain management.</p>
+                    <a href="https://www.tumblr.com/tagged/blockchain" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold py-2 px-4 rounded-full text-sm hover:bg-indigo-700 transition-colors duration-200">
+                        Read More
+                    </a>
+                </div>
+            </div>
+
+            <!-- Data Analytics Blog Post -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover transition-shadow duration-300 animate-on-scroll" data-animation="fade-right">
+                <img class="w-full h-48 object-cover object-center" src="https://placehold.co/600x400/e2e8f0/1e293b?text=Data+Analytics" alt="Data Analytics illustration">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Decoding the Narrative: The Story in Your Data</h2>
+                    <p class="text-slate-500 mb-4 text-sm">Data analytics is all about finding the story hidden in the numbers. Learn how to use visualizations and statistical methods to make sense of complex datasets and tell a compelling story that informs decisions.</p>
+                    <a href="https://www.tumblr.com/tagged/data-analytics" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold py-2 px-4 rounded-full text-sm hover:bg-indigo-700 transition-colors duration-200">
+                        Read More
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Deep Learning Blog Post -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover transition-shadow duration-300 animate-on-scroll" data-animation="fade-left">
+                <img class="w-full h-48 object-cover object-center" src="https://placehold.co/600x400/e2e8f0/1e293b?text=Deep+Learning" alt="Deep Learning illustration">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">The Brains of AI: An Intro to Deep Learning</h2>
+                    <p class="text-slate-500 mb-4 text-sm">Deep learning powers the most advanced AI applications, from image recognition to natural language processing. This post explains what neural networks are and how they've revolutionized the field of artificial intelligence.</p>
+                    <a href="https://www.tumblr.com/tagged/deep-learning" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold py-2 px-4 rounded-full text-sm hover:bg-indigo-700 transition-colors duration-200">
+                        Read More
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Web Development Blog Post -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover transition-shadow duration-300 animate-on-scroll" data-animation="zoom-in">
+                <img class="w-full h-48 object-cover object-center" src="https://placehold.co/600x400/e2e8f0/1e293b?text=Web+Dev" alt="Web Development illustration">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">Building the Web: The Future of Web Development</h2>
+                    <p class="text-slate-500 mb-4 text-sm">The web is constantly evolving. Learn about the latest trends, frameworks, and tools in front-end and back-end development. Discover how to build responsive, dynamic, and fast websites that provide an amazing user experience.</p>
+                    <a href="https://www.tumblr.com/tagged/web-development" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold py-2 px-4 rounded-full text-sm hover:bg-indigo-700 transition-colors duration-200">
+                        Read More
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Open Source Blog Post -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover transition-shadow duration-300 animate-on-scroll" data-animation="fade-right">
+                <img class="w-full h-48 object-cover object-center" src="https://placehold.co/600x400/e2e8f0/1e293b?text=Open+Source" alt="Open Source illustration">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2">The Open Revolution: A Guide to Open Source</h2>
+                    <p class="text-slate-500 mb-4 text-sm">Open source software is a powerful force for innovation. This post explores the philosophy behind open source, its impact on the tech industry, and how you can get involved in projects that shape the future.</p>
+                    <a href="https://www.tumblr.com/tagged/open-source" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold py-2 px-4 rounded-full text-sm hover:bg-indigo-700 transition-colors duration-200">
+                        Read More
+                    </a>
+                </div>
+            </div>
+        </main>
+    </main>
+
+    <!-- Footer (from provided code) -->
+    <footer class="bg-gray-800 text-gray-400 py-12 animate-on-scroll" data-animation="zoom-in">
+        <div class="container mx-auto p-4 text-center">
+            <div class="mb-4">
+                <a href="#" class="text-3xl font-bold text-white">Studio.</a>
+            </div>
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="hover:text-white transition-colors duration-300">Terms</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Privacy</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Careers</a>
+            </div>
+            <p>&copy; 2025 Tech Insights. All rights reserved.</p>
+            <div class="mt-8 flex justify-center">
+                <div class="w-full max-w-7xl flex flex-col items-center">
+                    <h1 class="text-white text-3xl md:text-5xl lg:text-7xl footer-logo mb-4">
+                        <div class="text-white">[]</div><div class="text-white">webstacks</div>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(element => {
+                observer.observe(element);
+            });
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

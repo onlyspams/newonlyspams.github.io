@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern & Clean Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #E8DAD0;
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+
+        /* Custom Animations & Effects */
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* Default animation (fade up) */
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Fade in from left */
+        .animate-on-scroll[data-animation="fade-left"] {
+            transform: translateX(-50px);
+        }
+        .animate-on-scroll.is-visible[data-animation="fade-left"] {
+            transform: translateX(0);
+        }
+        
+        /* Fade in from right */
+        .animate-on-scroll[data-animation="fade-right"] {
+            transform: translateX(50px);
+        }
+        .animate-on-scroll.is-visible[data-animation="fade-right"] {
+            transform: translateX(0);
+        }
+        
+        /* Zoom in */
+        .animate-on-scroll[data-animation="zoom-in"] {
+            transform: scale(0.8);
+        }
+        .animate-on-scroll.is-visible[data-animation="zoom-in"] {
+            transform: scale(1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .button-gradient {
+            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .button-gradient:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        }
+
+        .icon-bounce {
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* Dropdown animations */
+        .dropdown-menu {
+            opacity: 0;
+            transform: translateY(10px);
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0s 0.3s;
+        }
+
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+            transition-delay: 0s;
+        }
+        
+        /* Sticky Scroll CSS */
+        .section-container {
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            padding: 2rem 0;
+            background-color: #E8DAD0;
+            min-height: 200vh;
+        }
+        
+        .section-heading {
+            position: sticky;
+            top: 0;
+            background-color: #E8DAD0;
+            z-index: 10;
+        }
+
+        .card-row-container {
+            display: flex;
+            overflow-x: scroll;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .card-row-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card {            
+            flex: 1;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-radius: 1rem;
+        }
+
+        .card-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-image {
+            height: 60%;
+        }
+        .card-text {
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+    </style>
+</head>
+<body class="selection:bg-indigo-300 selection:text-indigo-900">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm shadow-md">
+        <nav class="container mx-auto flex justify-between items-center p-6">
+            <a href="#" class="text-3xl font-bold text-indigo-700">Studio.</a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <div class="flex items-center space-x-8 text-gray-600 font-semibold">
+                    <a href="home.html" class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-10l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        <span>Home</span>
+                    </a>
+                    
+                    <div class="relative group">
+                        <button class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300 focus:outline-none">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>Capabilities</span>
+                            <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute z-50 mt-2 w-48 rounded-lg shadow-xl bg-white p-2">
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Consultancy</a>
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Web Development</a>
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Data Analytics</a>
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Artificial Intelligence</a>
+                        </div>
+                    </div>
+
+                    <a href="blog.html" class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2zm-5-10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        <span>Blog</span>
+                    </a>
+
+                    <div class="relative group">
+                        <button class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300 focus:outline-none">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+                            <span>Company</span>
+                            <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute z-50 mt-2 w-48 rounded-lg shadow-xl bg-white p-2">
+                            <a href="aboutus.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">About Us</a>
+                            <a href="career.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Careers</a>
+                            <a href="contact.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+                 <a href="signup.html" class="bg-gray-900 text-white py-2 px-6 rounded-full font-bold hover:bg-gray-700 transition-colors duration-300">
+                    Get Started
+                </a>
+            </div>
+
+            <button id="mobile-menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white p-4 space-y-4">
+            <a href="home.html" class="block text-gray-600 font-semibold hover:text-indigo-700">Home</a>
+            <h3 class="font-bold text-gray-800">Capabilities</h3>
+            <div class="pl-4 space-y-2">
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Consultancy</a>
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Web Development</a>
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Data Analytics</a>
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Artificial Intelligence</a>
+            </div>
+             <a href="blog.html" class="block text-gray-600 font-semibold hover:text-indigo-700">Blog</a>
+             <h3 class="font-bold text-gray-800">Company</h3>
+            <div class="pl-4 space-y-2">
+                 <a href="aboutus.html" class="block text-gray-600 hover:text-indigo-700">About Us</a>
+                 <a href="career.html" class="block text-gray-600 hover:text-indigo-700">Careers</a>
+                 <a href="contact.html" class="block text-gray-600 hover:text-indigo-700">Contact Us</a>
+            </div>
+            <a href="signup.html" class="block text-center bg-gray-900 text-white py-3 px-6 rounded-full font-bold hover:bg-gray-700 transition-colors duration-300 mt-4">
+                Get Started
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center p-4">
+            <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 animate-on-scroll" data-animation="fade-left">
+                    <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+                        We Create Digital Experiences That Inspire
+                    </h1>
+                    <p class="text-xl text-gray-500 max-w-lg mt-4">
+                        A boutique design studio building beautiful and effective websites, branding, and digital products.
+                    </p>
+                    <a href="#" class="inline-block mt-8 text-white py-3 px-8 rounded-full font-bold button-gradient">
+                        Explore Our Work
+                    </a>
+                </div>
+                <div class="animate-on-scroll" data-animation="fade-right">
+                    <img src="https://placehold.co/800x600/e0e6f3/1a202c?text=Creative+Design" alt="Creative Digital Design" class="w-full h-auto rounded-3xl shadow-2xl">
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-20" id="features">
+            <div class="container mx-auto p-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4 animate-on-scroll">Our Approach</h2>
+                    <p class="text-lg text-gray-500 max-w-2xl mx-auto animate-on-scroll">
+                        We combine creative vision with technical expertise to deliver results that truly matter.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-12">
+                    <!-- Feature 1 -->
+                    <!-- Feature 1 -->
+<div class="p-8 bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 card-hover animate-on-scroll" data-animation="zoom-in" style="transition-delay: 0.1s;">
+    <div class="flex items-center space-x-4 mb-4">
+        <svg class="w-12 h-12 text-indigo-600 icon-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L12 19.25L14.25 17M12 4V19M4 12H20"></path>
+        </svg>
+        <h3 class="text-2xl font-semibold text-gray-900">Strategy</h3>
+    </div>
+    <p class="text-gray-500">We begin with a deep dive into your goals to build a roadmap for success.</p>
+</div>
+
+<!-- Feature 2 -->
+<div class="p-8 bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 card-hover animate-on-scroll" data-animation="zoom-in" style="transition-delay: 0.3s;">
+    <div class="flex items-center space-x-4 mb-4">
+        <svg class="w-12 h-12 text-indigo-600 icon-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10V18M12 6V6M12 18H8M12 18H16M6 12H18"></path>
+        </svg>
+        <h3 class="text-2xl font-semibold text-gray-900">Design</h3>
+    </div>
+    <p class="text-gray-500">Our creative team brings your vision to life with stunning visuals and UX.</p>
+</div>
+
+<!-- Feature 3 (Fixed Development Card) -->
+<div class="p-8 bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 card-hover animate-on-scroll" data-animation="zoom-in" style="transition-delay: 0.5s;">
+    <div class="flex items-center space-x-4 mb-4">
+        <svg class="w-12 h-12 text-indigo-600 icon-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l-4 16m-4-16l-4 16m-4-16l4 16"></path>
+        </svg>
+        <h3 class="text-2xl font-semibold text-gray-900">Development</h3>
+    </div>
+    <p class="text-gray-500">We build robust and scalable solutions using the latest technologies.</p>
+</div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- About/Sticky Scroll Section -->
+        <section id="about">
+            <!-- Overall Scroll Container -->
+            <div class="main-container">
+
+                <!-- Consultancy Section -->
+                <div class="section-container">
+                    <div class="content-wrapper">
+                        <h2 class="section-heading text-2xl md:text-3xl font-bold py-4 px-8">Consultancy</h2>
+                        <div class="card-row-container">
+                            <!-- Card 1 -->
+                            <div class="card bg-white h-96">
+                                <div class="card-content">
+                                    <img src="https://placehold.co/300x200/4B5563/FFFFFF?text=CEO" alt="CEO" class="w-full h-auto object-cover rounded-t-xl card-image">
+                                    <div class="p-6 card-text">
+                                        <h3 class="text-lg font-semibold text-gray-800">Chief CTO</h3>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            A strategic tech leader at the intersection of the in-house cost
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="card bg-white h-96">
+                                <div class="card-content">
+                                    <img src="https://placehold.co/300x200/4B5563/FFFFFF?text=AI+Bootcamp" alt="AI Bootcamp" class="w-full h-auto object-cover rounded-t-xl card-image">
+                                    <div class="p-6 card-text">
+                                        <h3 class="text-lg font-semibold text-gray-800">Tech.Data.AI Bootcamp</h3>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            Prepare next gen leaders in the age of AI, data, and digital transformation
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="card bg-white h-96">
+                                <div class="card-content">
+                                    <img src="https://placehold.co/300x200/4B5563/FFFFFF?text=Ecosystem" alt="Ecosystem" class="w-full h-auto object-cover rounded-t-xl card-image">
+                                    <div class="p-6 card-text">
+                                        <h3 class="text-lg font-semibold text-gray-800">Cohesive Ecosystem</h3>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            Integrate tools, vendors and custom software into a unified stack
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 4 -->
+                            <div class="card bg-white h-96">
+                                <div class="card-content">
+                                    <img src="https://placehold.co/300x200/4B5563/FFFFFF?text=Roadmaps" alt="Roadmaps" class="w-full h-auto object-cover rounded-t-xl card-image">
+                                    <div class="p-6 card-text">
+                                        <h3 class="text-lg font-semibold text-gray-800">AI Infused Roadmaps</h3>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            Cut through noise with prioritized ROI-focused tech strategies
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Software Development Section -->
+                <div class="section-container">
+                    <div class="content-wrapper">f
+                        <h2 class="section-heading text-2xl md:text-3xl font-bold py-4 px-8">Software Development</h2>
+                        <div class="card-row-container">
+                            <!-- Card 1 -->
+                            <div class="card bg-white h-96">
+                                <div class="card-content">
+                                    <img src="https://placehold.co/300x200/4B5563/FFFFFF?text=UI" alt="UI" class="w-full h-auto object-cover rounded-t-xl card-image">
+                                    <div class="p-6 card-text">
+                                        <h3 class="text-lg font-semibold text-gray-800">Modern UI | UX</h3>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            Simplifies complexity, drives user adoption
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="card bg-white h-96">
+                                <div class="card-content">
+                                    <img src="https://placehold.co/300x200/4B5563/FFFFFF?text=Platforms" alt="Platforms" class="w-full h-auto object-cover rounded-t-xl card-image">
+                                    <div class="p-6 card-text">
+                                        <h3 class="text-lg font-semibold text-gray-800">Scalable Tech Platforms</h3>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            Future-ready apps and platforms that grow with your business
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="card bg-white h-96">
+                                <div class="card-content">
+                                    <img src="https://placehold.co/300x200/4B5563/FFFFFF?text=Systems" alt="Systems" class="w-full h-auto object-cover rounded-t-xl card-image">
+                                    <div class="p-6 card-text">
+                                        <h3 class="text-lg font-semibold text-gray-800">Enterprise Systems</h3>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            Tailored cost effective enterprise systems to optimally fit your needs
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 4 -->
+                            <div class="card bg-white h-96">
+                                <div class="card-content">
+                                    <img src="https://placehold.co/300x200/4B5563/FFFFFF?text=Lifecycle" alt="Lifecycle" class="w-full h-auto object-cover rounded-t-xl card-image">
+                                    <div class="p-6 card-text">
+                                        <h3 class="text-lg font-semibold text-gray-800">Product Lifecycle</h3>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            From concept to deployment, build, iterate, and scale seamlessly
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Design Section -->
+                <div class="section-container">
+                    <div class="content-wrapper">
+                        <h2 class="section-heading text-2xl md:text-3xl font-bold py-4 px-8">Design</h2>
+                        <div class="card-row-container">
+                            <!-- Card 1 -->
+                            <div class="card bg-white h-96">
+                                <div class="card-content">
+                                    <img src="https://placehold.co/300x200/4B5563/FFFFFF?text=Strategy" alt="Strategy" class="w-full h-auto object-cover rounded-t-xl card-image">
+                                    <div class="p-6 card-text">
+                                        <h3 class="text-lg font-semibold text-gray-800">Design Strategy</h3>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            Research and insights that inform effective design solutions
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="card bg-white h-96">
+                                <div class="card-content">
+                                    <img src="https://placehold.co/300x200/4B5563/FFFFFF?text=Systems" alt="Systems" class="w-full h-auto object-cover rounded-t-xl card-image">
+                                    <div class="p-6 card-text">
+                                        <h3 class="text-lg font-semibold text-gray-800">Design Systems</h3>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            Standardized components for consistent user experiences
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="card bg-white h-96">
+                                <div class="card-content">
+                                    <img src="https://placehold.co/300x200/4B5563/FFFFFF?text=Prototype" alt="Prototype" class="w-full h-auto object-cover rounded-t-xl card-image">
+                                    <div class="p-6 card-text">
+                                        <h3 class="text-lg font-semibold text-gray-800">Prototyping & Testing</h3>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            Validate designs with real users for optimal usability
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 4 -->
+                            <div class="card bg-white h-96">
+                                <div class="card-content">
+                                    <img src="https://placehold.co/300x200/4B5563/FFFFFF?text=Visuals" alt="Visuals" class="w-full h-auto object-cover rounded-t-xl card-image">
+                                    <div class="p-6 card-text">
+                                        <h3 class="text-lg font-semibold text-gray-800">Visual Design</h3>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            Aesthetic layouts and engaging visual communication
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data & AI Section -->
+                <div class="section-container">
+                    <div class="content-wrapper">
+                        <h2 class="section-heading text-2xl md:text-3xl font-bold py-4 px-8">Data & AI</h2>
+                        <div class="card-row-container">
+                            <!-- Card 1 -->
+                            <div class="card bg-white h-96">
+                                <div class="card-content">
+                                    <img src="https://placehold.co/300x200/4B5563/FFFFFF?text=Analytics" alt="Analytics" class="w-full h-auto object-cover rounded-t-xl card-image">
+                                    <div class="p-6 card-text">
+                                        <h3 class="text-lg font-semibold text-gray-800">Advanced Analytics</h3>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            Transforming raw data into actionable business intelligence
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="card bg-white h-96">
+                                <div class="card-content">
+                                    <img src="https://placehold.co/300x200/4B5563/FFFFFF?text=Learning" alt="Learning" class="w-full h-auto object-cover rounded-t-xl card-image">
+                                    <div class="p-6 card-text">
+                                        <h3 class="text-lg font-semibold text-gray-800">Machine Learning</h3>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            Building intelligent models that automate and predict
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="card bg-white h-96">
+                                <div class="card-content">
+                                    <img src="https://placehold.co/300x200/4B5563/FFFFFF?text=AI" alt="AI" class="w-full h-auto object-cover rounded-t-xl card-image">
+                                    <div class="p-6 card-text">
+                                        <h3 class="text-lg font-semibold text-gray-800">Generative AI</h3>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            Creating new content, designs, and insights with AI
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 4 -->
+                            <div class="card bg-white h-96">
+                                <div class="card-content">
+                                    <img src="https://placehold.co/300x200/4B5563/FFFFFF?text=Engineering" alt="Engineering" class="w-full h-auto object-cover rounded-t-xl card-image">
+                                    <div class="p-6 card-text">
+                                        <h3 class="text-lg font-semibold text-gray-800">Data Engineering</h3>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            Robust data pipelines for seamless data flow and integration
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <!-- Services Section -->
+        <section class="py-20" id="services">
+            <div class="container mx-auto p-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-2 animate-on-scroll">What We Offer</h2>
+                    <p class="text-lg text-gray-500 max-w-2xl mx-auto animate-on-scroll">
+                        A suite of services designed to accelerate your business and secure your digital future.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl card-hover transition-all duration-300 animate-on-scroll" data-animation="zoom-in" style="transition-delay: 0.1s;">
+                        <div class="text-indigo-600 mb-4">
+                            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L12 19.25L14.25 17M12 4V19M4 12H20"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-900">Web Development</h3>
+                        <p class="text-gray-500">
+                            Building responsive, high-performance websites and web applications with modern frameworks.
+                        </p>
+                    </div>
+                    <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl card-hover transition-all duration-300 animate-on-scroll" data-animation="zoom-in" style="transition-delay: 0.3s;">
+                        <div class="text-indigo-600 mb-4">
+                            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10V18M12 6V6M12 18H8M12 18H16M6 12H18"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-900">UI/UX Design</h3>
+                        <p class="text-gray-500">
+                            Crafting intuitive and elegant user interfaces that deliver a seamless user experience.
+                        </p>
+                    </div>
+                    <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl card-hover transition-all duration-300 animate-on-scroll" data-animation="zoom-in" style="transition-delay: 0.5s;">
+                        <div class="text-indigo-600 mb-4">
+                            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l-4 16m-4-16l-4 16m-4-16l4 16"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-900">Branding</h3>
+                        <p class="text-gray-500">
+                            Developing powerful brand identities that resonate with your target audience.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="py-20 bg-white" id="contact">
+            <div class="container mx-auto p-4 text-center">
+                <div class="animate-on-scroll">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Let's Build Something Great</h2>
+                    <p class="text-lg text-gray-500 max-w-2xl mx-auto mb-8">
+                        Ready to start your next project? Get in touch with us today and let's turn your ideas into reality.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 py-12">
+        <div class="container mx-auto p-4 text-center">
+            <div class="mb-4">
+                <a href="#" class="text-3xl font-bold text-white">Studio.</a>
+            </div>
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="hover:text-white transition-colors duration-300">Terms</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Privacy</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Careers</a>
+            </div>
+            <p>&copy; 2024 Studio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

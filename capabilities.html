@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Capabilities - Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #E8DAD0;
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+
+        /* Custom Animations & Effects */
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* Default animation (fade up) */
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Fade in from left */
+        .animate-on-scroll[data-animation="fade-left"] {
+            transform: translateX(-50px);
+        }
+        .animate-on-scroll.is-visible[data-animation="fade-left"] {
+            transform: translateX(0);
+        }
+        
+        /* Fade in from right */
+        .animate-on-scroll[data-animation="fade-right"] {
+            transform: translateX(50px);
+        }
+        .animate-on-scroll.is-visible[data-animation="fade-right"] {
+            transform: translateX(0);
+        }
+        
+        /* Zoom in */
+        .animate-on-scroll[data-animation="zoom-in"] {
+            transform: scale(0.8);
+        }
+        .animate-on-scroll.is-visible[data-animation="zoom-in"] {
+            transform: scale(1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .button-gradient {
+            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .button-gradient:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        }
+
+        .icon-bounce {
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* Dropdown animations */
+        .dropdown-menu {
+            opacity: 0;
+            transform: translateY(10px);
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0s 0.3s;
+        }
+
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+            transition-delay: 0s;
+        }
+        
+        /* Sticky Scroll CSS */
+        .section-container {
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            padding: 2rem 0;
+            background-color: #E8DAD0;
+            min-height: 200vh;
+        }
+        
+        .section-heading {
+            position: sticky;
+            top: 0;
+            background-color: #E8DAD0;
+            z-index: 10;
+        }
+
+        .card-row-container {
+            display: flex;
+            overflow-x: scroll;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .card-row-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card {            
+            flex: 1;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-radius: 1rem;
+        }
+
+        .card-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-image {
+            height: 60%;
+        }
+        .card-text {
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+    </style>
+</head>
+<body class="selection:bg-indigo-300 selection:text-indigo-900">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm shadow-md">
+        <nav class="container mx-auto flex justify-between items-center p-6">
+            <a href="#" class="text-3xl font-bold text-indigo-700">Studio.</a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <div class="flex items-center space-x-8 text-gray-600 font-semibold">
+                    <a href="home.html" class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-10l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        <span>Home</span>
+                    </a>
+                    
+                    <div class="relative group">
+                        <button class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300 focus:outline-none">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>Capabilities</span>
+                            <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute z-50 mt-2 w-48 rounded-lg shadow-xl bg-white p-2">
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Consultancy</a>
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Web Development</a>
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Data Analytics</a>
+                            <a href="capabilities.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Artificial Intelligence</a>
+                        </div>
+                    </div>
+
+                    <a href="blog.html" class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2zm-5-10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        <span>Blog</span>
+                    </a>
+
+                    <div class="relative group">
+                        <button class="flex items-center space-x-2 hover:text-indigo-700 transition-colors duration-300 focus:outline-none">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+                            <span>Company</span>
+                            <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute z-50 mt-2 w-48 rounded-lg shadow-xl bg-white p-2">
+                            <a href="aboutus.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">About Us</a>
+                            <a href="career.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Careers</a>
+                            <a href="contact.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+                 <a href="signup.html" class="bg-gray-900 text-white py-2 px-6 rounded-full font-bold hover:bg-gray-700 transition-colors duration-300">
+                    Get Started
+                </a>
+            </div>
+
+            <button id="mobile-menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white p-4 space-y-4">
+            <a href="home.html" class="block text-gray-600 font-semibold hover:text-indigo-700">Home</a>
+            <h3 class="font-bold text-gray-800">Capabilities</h3>
+            <div class="pl-4 space-y-2">
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Consultancy</a>
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Web Development</a>
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Data Analytics</a>
+                <a href="capabilities.html" class="block text-gray-600 hover:text-indigo-700">Artificial Intelligence</a>
+            </div>
+             <a href="blog.html" class="block text-gray-600 font-semibold hover:text-indigo-700">Blog</a>
+             <h3 class="font-bold text-gray-800">Company</h3>
+            <div class="pl-4 space-y-2">
+                 <a href="aboutus.html" class="block text-gray-600 hover:text-indigo-700">About Us</a>
+                 <a href="career.html" class="block text-gray-600 hover:text-indigo-700">Careers</a>
+                 <a href="contact.html" class="block text-gray-600 hover:text-indigo-700">Contact Us</a>
+            </div>
+            <a href="signup.html" class="block text-center bg-gray-900 text-white py-3 px-6 rounded-full font-bold hover:bg-gray-700 transition-colors duration-300 mt-4">
+                Get Started
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="pt-32 pb-20 p-4">
+            <div class="container mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight animate-on-scroll">
+                    Our <span class="text-indigo-700">Capabilities</span>
+                </h1>
+                <p class="text-xl text-gray-500 max-w-3xl mx-auto mt-4 animate-on-scroll" style="transition-delay: 0.2s;">
+                    We provide end-to-end digital solutions that transform businesses and drive growth in the digital age.
+                </p>
+            </div>
+        </section>
+
+        <!-- Services Overview -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto p-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
+                    <p class="text-lg text-gray-500 max-w-2xl mx-auto">
+                        We offer a comprehensive suite of services to help businesses thrive in the digital landscape.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Consultancy -->
+                    <div class="bg-gray-50 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 card-hover text-center">
+                        <div class="service-icon mx-auto">
+                            <i class="fas fa-chart-line text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Consultancy</h3>
+                        <p class="text-gray-500">Strategic guidance to transform your business processes and digital capabilities.</p>
+                    </div>
+
+                    <!-- Web Development -->
+                    <div class="bg-gray-50 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 card-hover text-center">
+                        <div class="service-icon mx-auto">
+                            <i class="fas fa-code text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Web Development</h3>
+                        <p class="text-gray-500">Custom web applications and websites that deliver exceptional user experiences.</p>
+                    </div>
+
+                    <!-- Data Analytics -->
+                    <div class="bg-gray-50 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 card-hover text-center">
+                        <div class="service-icon mx-auto">
+                            <i class="fas fa-chart-pie text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Data Analytics</h3>
+                        <p class="text-gray-500">Turn your data into actionable insights that drive business decisions.</p>
+                    </div>
+
+                    <!-- Artificial Intelligence -->
+                    <div class="bg-gray-50 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 card-hover text-center">
+                        <div class="service-icon mx-auto">
+                            <i class="fas fa-robot text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">AI Solutions</h3>
+                        <p class="text-gray-500">Intelligent solutions that automate processes and enhance customer experiences.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Services -->
+        <section class="py-16">
+            <div class="container mx-auto p-4">
+                <div class="bg-white rounded-3xl shadow-xl p-8">
+                    <div class="flex flex-wrap mb-8 border-b">
+                        <button class="tab-btn px-6 py-3 font-semibold rounded-t-lg tab-active" data-tab="consultancy">Consultancy</button>
+                        <button class="tab-btn px-6 py-3 font-semibold rounded-t-lg" data-tab="webdev">Web Development</button>
+                        <button class="tab-btn px-6 py-3 font-semibold rounded-t-lg" data-tab="analytics">Data Analytics</button>
+                        <button class="tab-btn px-6 py-3 font-semibold rounded-t-lg" data-tab="ai">Artificial Intelligence</button>
+                    </div>
+
+                    <div class="tab-content" id="consultancy">
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <h3 class="text-3xl font-bold text-gray-900 mb-6">Strategic Consultancy Services</h3>
+                                <p class="text-gray-500 mb-4">
+                                    Our consultancy services help businesses navigate digital transformation with expert guidance and strategic planning.
+                                </p>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3"></i>
+                                        <span>Digital transformation strategy</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3"></i>
+                                        <span>Process optimization</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3"></i>
+                                        <span>Technology stack evaluation</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3"></i>
+                                        <span>Change management</span>
+                                    </li>
+                                </ul>
+                                <a href="#" class="inline-block text-white py-3 px-8 rounded-full font-bold button-gradient">
+                                    Learn More
+                                </a>
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/600x400/e0e6f3/1a202c?text=Consultancy" alt="Consultancy" class="rounded-2xl shadow-lg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content hidden" id="webdev">
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <h3 class="text-3xl font-bold text-gray-900 mb-6">Web Development Solutions</h3>
+                                <p class="text-gray-500 mb-4">
+                                    We create responsive, high-performance websites and web applications that drive engagement and conversion.
+                                </p>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3"></i>
+                                        <span>Custom web application development</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3"></i>
+                                        <span>E-commerce solutions</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3"></i>
+                                        <span>Progressive Web Apps (PWAs)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3"></i>
+                                        <span>API development and integration</span>
+                                    </li>
+                                </ul>
+                                <a href="#" class="inline-block text-white py-3 px-8 rounded-full font-bold button-gradient">
+                                    Learn More
+                                </a>
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/600x400/e0e6f3/1a202c?text=Web+Development" alt="Web Development" class="rounded-2xl shadow-lg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content hidden" id="analytics">
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <h3 class="text-3xl font-bold text-gray-900 mb-6">Data Analytics Services</h3>
+                                <p class="text-gray-500 mb-4">
+                                    Transform your data into actionable insights with our advanced analytics solutions and visualization tools.
+                                </p>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3"></i>
+                                        <span>Business intelligence dashboards</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3"></i>
+                                        <span>Predictive analytics</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3"></i>
+                                        <span>Data visualization</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3"></i>
+                                        <span>Big data solutions</span>
+                                    </li>
+                                </ul>
+                                <a href="#" class="inline-block text-white py-3 px-8 rounded-full font-bold button-gradient">
+                                    Learn More
+                                </a>
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/600x400/e0e6f3/1a202c?text=Data+Analytics" alt="Data Analytics" class="rounded-2xl shadow-lg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content hidden" id="ai">
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <h3 class="text-3xl font-bold text-gray-900 mb-6">AI & Machine Learning</h3>
+                                <p class="text-gray-500 mb-4">
+                                    Leverage the power of artificial intelligence to automate processes, gain insights, and enhance customer experiences.
+                                </p>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3"></i>
+                                        <span>Machine learning models</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3"></i>
+                                        <span>Natural language processing</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3"></i>
+                                        <span>Computer vision solutions</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-indigo-600 mt-1 mr-3"></i>
+                                        <span>AI-powered chatbots</span>
+                                    </li>
+                                </ul>
+                                <a href="#" class="inline-block text-white py-3 px-8 rounded-full font-bold button-gradient">
+                                    Learn More
+                                </a>
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/600x400/e0e6f3/1a202c?text=AI+Solutions" alt="AI Solutions" class="rounded-2xl shadow-lg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto p-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Process</h2>
+                    <p class="text-lg text-gray-500 max-w-2xl mx-auto">
+                        We follow a structured approach to ensure successful project delivery and client satisfaction.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="process-step text-center p-6">
+                        <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center mx-auto mb-4">
+                            <span class="text-indigo-700 font-bold text-xl">1</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Discover</h3>
+                        <p class="text-gray-500">We analyze your requirements and business objectives.</p>
+                    </div>
+
+                    <div class="process-step text-center p-6">
+                        <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center mx-auto mb-4">
+                            <span class="text-indigo-700 font-bold text-xl">2</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Design</h3>
+                        <p class="text-gray-500">We create solutions tailored to your specific needs.</p>
+                    </div>
+
+                    <div class="process-step text-center p-6">
+                        <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center mx-auto mb-4">
+                            <span class="text-indigo-700 font-bold text-xl">3</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Develop</h3>
+                        <p class="text-gray-500">We build robust solutions using cutting-edge technologies.</p>
+                    </div>
+
+                    <div class="process-step text-center p-6">
+                        <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center mx-auto mb-4">
+                            <span class="text-indigo-700 font-bold text-xl">4</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Deploy</h3>
+                        <p class="text-gray-500">We implement and maintain the solution for optimal performance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20">
+            <div class="container mx-auto p-4 text-center">
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-700 rounded-3xl p-12 text-white">
+                    <h2 class="text-4xl font-bold mb-4">Ready to Transform Your Business?</h2>
+                    <p class="text-xl max-w-2xl mx-auto mb-8">
+                        Let's discuss how our capabilities can help you achieve your business goals.
+                    </p>
+                    <a href="contact.html" class="inline-block bg-white text-indigo-700 py-3 px-8 rounded-full font-bold hover:bg-gray-100 transition-colors duration-300">
+                        Contact Us Today
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 py-12">
+        <div class="container mx-auto p-4 text-center">
+            <div class="mb-4">
+                <a href="#" class="text-3xl font-bold text-white">Studio.</a>
+            </div>
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="hover:text-white transition-colors duration-300">Terms</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Privacy</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Careers</a>
+            </div>
+            <p>&copy; 2024 Studio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('tab-active', 'text-white');
+                        btn.classList.add('text-gray-600');
+                    });
+                    
+                    // Add active class to clicked button
+                    button.classList.add('tab-active', 'text-white');
+                    button.classList.remove('text-gray-600');
+                    
+                    // Hide all tab contents
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    
+                    // Show selected tab content
+                    document.getElementById(tabId).classList.remove('hidden');
+                });
+            });
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
